@@ -1,3 +1,7 @@
+node_modules/
+adminsdk.json
+package-lock.json
+
 # History files
 .Rhistory
 .Rapp.history

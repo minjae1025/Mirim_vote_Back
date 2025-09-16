@@ -1,0 +1,23 @@
+{
+  "name": "mirim_vote_test_firebase_backend",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "firebase": "^12.2.1",
+    "firebase-admin": "^13.5.0",
+    "nodemon": "^3.1.10",
+    "path": "^0.12.7"
+  }
+}
