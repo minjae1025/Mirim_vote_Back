@@ -1,0 +1,3 @@
+interface loginDTO {
+  token: string;
+}

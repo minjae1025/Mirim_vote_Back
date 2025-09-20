@@ -36,7 +36,6 @@ loginBtn.addEventListener('click', () => {
                     },
                     body: JSON.stringify({ token: idToken }),
                 })
-                    .then(response => response.json())
                     .then(data => {
                         console.log('Backend response:', data);
                         updateUI(data.user);

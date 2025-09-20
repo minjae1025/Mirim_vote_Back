@@ -1,53 +1,58 @@
-node_modules/
-adminsdk.json
-package-lock.json
+# compiled output
+/dist
+/node_modules
+/build
+/test
+/src/auth/adminsdk.json
 
-# History files
-.Rhistory
-.Rapp.history
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
 
-# Session Data files
-.RData
-.RDataTmp
+# OS
+.DS_Store
 
-# User-specific files
-.Ruserdata
+# Tests
+/coverage
+/.nyc_output
 
-# Example code in package build process
-*-Ex.R
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
-# Output files from R CMD build
-/*.tar.gz
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
-# Output files from R CMD check
-/*.Rcheck/
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
 
-# RStudio files
-.Rproj.user/
+# temp directory
+.temp
+.tmp
 
-# produced vignettes
-vignettes/*.html
-vignettes/*.pdf
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
 
-# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
-.httr-oauth
-
-# knitr and R markdown default cache directories
-*_cache/
-/cache/
-
-# Temporary files created by R markdown
-*.utf8.md
-*.knit.md
-
-# R Environment Variables
-.Renviron
-
-# pkgdown site
-docs/
-
-# translation temp files
-po/*~
-
-# RStudio Connect folder
-rsconnect/
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
