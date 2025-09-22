@@ -36,9 +36,10 @@ loginBtn.addEventListener('click', () => {
                     },
                     body: JSON.stringify({ token: idToken }),
                 })
+                    .then(response => response.json())
                     .then(data => {
                         console.log('Backend response:', data);
-                        updateUI(data.user);
+                        updateUI(data);
                     })
                     .catch(error => console.error('Error sending token to backend:', error));
             });
@@ -73,6 +74,7 @@ auth.onAuthStateChanged((user) => {
         })
             .then(response => response.json())
             .then(data => {
+                console.log(data.user)
                 updateUI(data.user);
             })
             .catch(error => console.error("uid of non-existent user"))

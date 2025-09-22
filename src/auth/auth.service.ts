@@ -74,10 +74,7 @@ export class AuthService {
             console.log(userData);
 
             // 프론트엔드에 성공 응답 전송
-            return {
-                message: 'Login Success!',
-                user: userData
-            };
+            return userData;
 
         } catch (error) {
             console.error('ID 토큰 검증 실패:', error);
@@ -120,7 +117,7 @@ export class AuthService {
                 createDate: createDate
             };
 
-            if (/^s|d\d/.test(userData.email)) {
+            if (/(s|d)\d{4}/.test(userData.email)) {
                 userData['type'] = "student";
             }
             else {
