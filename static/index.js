@@ -38,7 +38,7 @@ loginBtn.addEventListener('click', () => {
                 })
                     .then(response => response.json())
                     .then(data => {
-                        console.log('Backend response:', data);
+                        // console.log('Backend response:', data);
                         updateUI(data);
                     })
                     .catch(error => console.error('Error sending token to backend:', error));
@@ -74,7 +74,6 @@ auth.onAuthStateChanged((user) => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data.user)
                 updateUI(data.user);
             })
             .catch(error => console.error("uid of non-existent user"))
@@ -84,7 +83,7 @@ auth.onAuthStateChanged((user) => {
 });
 
 function updateUI(user) {
-    if (user) {
+    if (user && user.uid != null) {
         userInfoDiv.innerHTML = `
                     <h3>환영합니다, ${user.displayName}님!</h3>
                     <p>이메일: ${user.email}</p>

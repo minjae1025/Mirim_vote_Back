@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import admin from 'firebase-admin';
 import { getFirestore } from 'firebase-admin/firestore';
 import serviceAccount from "./adminsdk.json";
+import { error } from 'console';
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount as admin.ServiceAccount)
@@ -65,7 +66,8 @@ export class AuthService {
                     });
                 //403 에러 전송
                 return {
-                    message: '학교 계정만 가능합니다.'
+                    message: '학교 계정만 가능합니다.',
+                    uid: null
                 };
 
             }
@@ -90,21 +92,32 @@ export class AuthService {
         //만약 존재한다면 구글에서 사용자의 이름만 가져옴.
         if (userDoc.exists) {
             console.log(`기존에 존재하는 사용자입니다.: ${uid}`);
-            const userRecord = await auth.getUser(uid)
-                .then((userRecord) => {
-                    return userRecord.toJSON();
-                })
-            const userData = (await db.collection("users").doc(uid).get()).data();
-            // userData.displayName = userRecord.displayName;
-            // await db.collection('users').doc(userData.uid).set(userData);
-            return userData;
+            try {
+                const userRecord = await auth.getUser(uid);
+
+                const userData = await (await db.collection("users").doc(uid).get()).data();
+                if (userData && userData.displayName != userRecord.displayName) {
+                    const newDisplayName = userRecord.displayName;
+                    userData.displayName = newDisplayName;
+                    await db.collection('users').doc(userData.uid).set(userData);
+                    return userData;
+                }
+                else {
+                    return userData;
+                }
+            }
+            catch (error) {
+                console.error("통신과정에서 문제가 발생 : ", error);
+            };
+
+
         }
         else {
             console.log(`새로운 사용자입니다.: ${uid}`);
             const date = new Date();
-            let year = date.getFullYear();
-            let month = String(date.getMonth() + 1).padStart(2, '0');
-            let day = String(date.getDate()).padStart(2, '0');
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
 
             const createDate = year + "/" + month + "/" + day;
 
